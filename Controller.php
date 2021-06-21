@@ -8,8 +8,13 @@ class Controller {
     }
     
     public function view($arquivo, $array = null) {
-        foreach ($array as $var => $value){
-            ${$var} = $value;
+        if (!is_null($array)){
+            foreach ($array as $var => $value) {
+                ${$var} = $value;
+            }
         }
+        ob_start();
+        include '{$arquivo}.php';
+        ob_flush();
     }
 }
